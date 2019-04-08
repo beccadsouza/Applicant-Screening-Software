@@ -1,0 +1,48 @@
+{% if user.details_set %}
+    <h1>PARTICIPANT EDIT DETAILS</h1>
+{% else %}
+    <h1>PARTICIPANT SET DETAILS</h1>
+{% endif %}
+<p><a href="{% url 'home' %}" style="text-decoration: none">HOME</a></p>
+<p><a href="{% url 'logout' %}" style="text-decoration: none">LOGOUT</a></p>
+
+<form class="site-form" action="{% url 'participants:details' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <p><label for="id_first_name">First name:</label><br><br><input type="text" name="first_name" maxlength="30" required="" id="id_first_name"></p>
+    <p><label for="id_last_name">Last name:</label><br><br><input type="text" name="last_name" maxlength="30" required="" id="id_last_name"></p>
+    <p><label for="id_github_username">Github username:</label><br><br><input type="text" name="github_username" maxlength="30" required="" id="id_github_username"></p>
+    <p><label for="id_linkedin_url">Linkedin url:</label><br><br><input type="url" name="linkedin_url" maxlength="200" required="" id="id_linkedin_url"></p>
+    <p><label for="id_resume">Resume:</label><br><br><input type="file" name="resume" required="" id="id_resume"></p>
+    <p><label for="id_institution">Institution:</label><br><br><input type="text" name="institution" maxlength="150" required="" id="id_institution"></p>
+    <p><label for="id_locality">Locality:</label><br><br><input type="text" name="locality" maxlength="100" required="" id="id_locality"></p>
+        <input type="submit" value="Update" id="id_add_details">
+</form>
+
+
+<style>
+    form p label{
+        font-weight: bold;
+        font-size: larger;
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+
+    $.get('{% url "participants:updatedetails" %}', function(data) {
+        if (data.length() !== 0) {
+
+            document.getElementById("id_first_name").value = data['first_name'];
+            document.getElementById("id_last_name").value = data['last_name'];
+            document.getElementById("id_github_username").value = data['github_username'];
+            document.getElementById("id_linkedin_url").value = data['linkedin_url'];
+            {#document.getElementById("id_resume").value = data['resume'];#}
+            document.getElementById("id_institution").value = data['institution'];
+            document.getElementById("id_locality").value = data['locality'];
+
+        }
+        console.log(data['last_name']);
+        {% if user.details_set %}
+            document.getElementById("id_add_details").value = "Update";
+        {% endif %}
+    })
+</script>

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+    Hi {{ user.username }}!
+    {% else %}
+        <h1>Welcome to ApplicantRank, please sign up or log in</h1>
+        <a href="{% url 'login' %}" style="text-decoration: none">LOGIN</a> |
+        <a href="{% url 'accounts:signup' %}" style="text-decoration: none">SIGNUP</a>
+    {% endif %}
+{% endblock %}

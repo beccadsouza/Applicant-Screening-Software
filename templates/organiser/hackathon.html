@@ -1,0 +1,22 @@
+<h1>ORGANISER ADD HACKATHON</h1>
+
+<p><a href="{% url 'home' %}" style="text-decoration: none">HOME</a></p>
+<p><a href="{% url 'logout' %}" style="text-decoration: none">LOGOUT</a></p>
+
+<form class="site-form" action="{% url 'organisers:addhackathon' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <p><label for="id_name">Name:</label><br><br><input type="text" name="name" maxlength="100" required="" id="id_name"></p>
+    <p><label for="id_location">Location:</label><br><br><input type="text" name="location" maxlength="200" required="" id="id_location"></p>
+    <p><label for="id_time">Time:</label><br><br><input type="text" name="time" required="" id="id_time"></p>
+    <p><label for="id_date">Date:</label><br><br><input type="text" name="date" required="" id="id_date"></p>
+    <p><label for="id_desc">Desc:</label><br><br><textarea name="desc" cols="40" rows="10" maxlength="500" required="" id="id_desc"></textarea></p>
+    <p><label for="id_poster">Poster:</label><br><br><input type="file" name="poster" required="" id="id_poster"></p>
+    <input type="submit" value="Add Hackathon" id="id_add_hackathon">
+</form>
+
+<style>
+    form p label{
+        font-weight: bold;
+        font-size: larger;
+    }
+</style>

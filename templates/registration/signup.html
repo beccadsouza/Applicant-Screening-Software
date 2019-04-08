@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+    <h2>Sign up</h2>
+    <form class="site-form" action="{% url 'accounts:signup' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" onclick="createAlert()">Sign up</button>
+    </form>
+    <script>
+        function createAlert() {
+            alert("A mail has been sent to your account confirming your registration. Kindly login again")
+        }
+    </script>
+
+{% endblock %}

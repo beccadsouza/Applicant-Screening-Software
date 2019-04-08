@@ -1,0 +1,7 @@
+<h1>PARTICIPANT REGISTER HACKATHON</h1>
+<p><a href="{% url 'home' %}" style="text-decoration: none">HOME</a></p>
+<p><a href="{% url 'logout' %}" style="text-decoration: none">LOGOUT</a></p>
+
+{% for hackathon in hackathons %}
+    {{ hackathon.name }}<a href="{% url 'profiles:createprofile' name=hackathon.name_id %}">Register</a><br>
+{% endfor %}

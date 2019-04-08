@@ -1,0 +1,38 @@
+{% if user.details_set %}
+    <h1>ORGANISER EDIT PROFILE</h1>
+{% else %}
+    <h1>ORGANISER SET PROFILE DETAILS</h1>
+{% endif %}
+<p><a href="{% url 'home' %}" style="text-decoration: none">HOME</a></p>
+<p><a href="{% url 'logout' %}" style="text-decoration: none">LOGOUT</a></p>
+
+<form class="site-form" action="{% url 'organisers:details' %}" method="post">
+    {% csrf_token %}
+    <p><label for="id_name">Name:</label><br><br><input type="text" name="name" maxlength="100" required="" id="id_name"></p>
+    <p><label for="id_website">Website:</label><br><br><input type="url" name="website" maxlength="200" required="" id="id_website"></p>
+    <p><label for="id_poc">Poc:</label><br><br><input type="text" name="poc" maxlength="100" required="" id="id_poc"></p>
+    <p><label for="id_contact">Contact:</label><br><br><input type="text" name="contact" maxlength="20" required="" id="id_contact"></p>
+    <input type="submit" value="Add Details" id="id_add_details">
+</form>
+
+<style>
+    form p label{
+        font-weight: bold;
+        font-size: larger;
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+
+    $.get('{% url "organisers:updatedetails" %}', function(data) {
+        document.getElementById("id_name").value = data['name'];
+        document.getElementById("id_website").value = data['website'];
+        document.getElementById("id_poc").value = data['poc'];
+        document.getElementById("id_contact").value = data['contact'];
+
+        console.log(data['name']);
+        {% if user.details_set %}
+            document.getElementById("id_add_details").value = "Update";
+        {% endif %}
+    })
+</script>

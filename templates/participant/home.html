@@ -1,0 +1,59 @@
+<h1>PARTICIPANT HOME PAGE</h1>
+<p><a href="{% url 'participants:details' %}" style="text-decoration: none">EDIT DETAILS</a></p>
+<p><a href="{% url 'participants:gethackathons' %}" style="text-decoration: none">REGISTER FOR HACKATHON</a></p>
+<p><a href="{% url 'logout' %}" style="text-decoration: none">LOGOUT</a></p>
+
+
+<div style="background-color: #d3d3d3;width: 700px;padding: 30px;font-size: larger">
+    <h2 style="background-color:#fff;text-transform: uppercase; text-align: center">{{ user.username }}'s profile</h2>
+    <p><span style="font-weight: bold;font-size: larger">First Name :</span>
+        {{ user.participant.first_name }}
+    <p><span style="font-weight: bold;font-size: larger">Last Name :</span>
+        {{ user.participant.last_name }}
+    <p><span style="font-weight: bold;font-size: larger">Github username :</span>
+        {{ user.participant.github_username }}
+    <p><span style="font-weight: bold;font-size: larger">LinkedIn URL :</span>
+        {{ user.participant.linkedin_url }}
+    <p><span style="font-weight: bold;font-size: larger">Institution :</span>
+        {{ user.participant.institution }}
+    <p><span style="font-weight: bold;font-size: larger">Locality :</span>
+        {{ user.participant.locality }}
+</div>
+
+<div style="background-color:#d39abe; width: 700px;padding: 30px;font-size: larger">
+    <h2 style="background-color:#fff;text-transform: uppercase; text-align: center">registered hackathons</h2>
+    <div id="list">
+        {% for hackathon in hackathons %}
+        <div style="padding:20px;">
+            <p>
+                <span style="font-weight: bold;font-size: larger">Name: </span>{{ hackathon.name }}<br>
+                <span style="font-weight: bold;font-size: larger">Location: </span>{{ hackathon.location }}<br>
+                <span style="font-weight: bold;font-size: larger">Date: </span>{{ hackathon.date }}<br>
+                <span style="font-weight: bold;font-size: larger">Time: </span>{{ hackathon.time }}<br>
+                <a href="participants/{{ hackathon.name_id }}/{{ user.username }}" style="text-decoration:none;"><button style="text-align:right">View Status</button></a>
+            </p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+    button {
+        background-color: rgb(255, 255, 255);
+        border: none;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin: 4px 2px;
+        font-size: larger;
+        cursor: pointer;
+}
+</style>
+<script>
+{#    {% if details_set %}#}
+{#        alert("Details have been set!!");#}
+{#    {% else %}#}
+{#        alert("Details have not yet been set!!");#}
+{#    {% endif %}#}
+</script>

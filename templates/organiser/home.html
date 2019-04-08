@@ -1,0 +1,72 @@
+<h1>ORGANISER HOME PAGE</h1>
+<p><a href="{% url 'organisers:details' %}" style="text-decoration: none">EDIT PROFILE</a></p>
+<p><a href="{% url 'organisers:addhackathon' %}" style="text-decoration: none">ADD HACKATHON</a></p>
+<p><a href="{% url 'logout' %}" style="text-decoration: none">LOGOUT</a></p>
+
+
+<div style="background-color: #d3d3d3;width: 700px;padding: 30px;font-size: larger">
+    <h2 style="background-color:#fff;text-transform: uppercase; text-align: center">profile details</h2>
+    <p><span style="font-weight: bold;font-size: larger">Name :</span>
+        {{ user.organiser.name }}
+    <p><span style="font-weight: bold;font-size: larger">Website :</span>
+        {{ user.organiser.website }}
+    <p><span style="font-weight: bold;font-size: larger">Point of Contact :</span>
+        {{ user.organiser.poc }}
+    <p><span style="font-weight: bold;font-size: larger">Contact :</span>
+        {{ user.organiser.contact }}
+</div>
+
+
+<div style="background-color:#d39abe; width: 700px;padding: 30px;font-size: larger">
+    <h2 style="background-color:#fff;text-transform: uppercase; text-align: center">created hackathons</h2>
+    <div id="list">
+        {% for hackathon in hackathons %}
+        <div style="padding:20px;">
+            <p>
+                <span style="font-weight: bold;font-size: larger">Name: </span>{{ hackathon.name }}<br>
+                <span style="font-weight: bold;font-size: larger">Location: </span>{{ hackathon.location }}<br>
+                <span style="font-weight: bold;font-size: larger">Date: </span>{{ hackathon.date }}<br>
+                <span style="font-weight: bold;font-size: larger">Time: </span>{{ hackathon.time }}<br>
+                <a href="{% url 'organisers:getranking' name=hackathon.name_id %}" style="text-decoration:none;"><button style="text-align:right">View Participants</button></a>
+            </p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<style>
+    button {
+        background-color: rgb(255, 255, 255);
+        border: none;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin: 4px 2px;
+        font-size: larger;
+        cursor: pointer;
+}
+</style>
+<script>
+{#    {% if details_set %}#}
+{#        alert("Details have been set!!");#}
+{#    {% else %}#}
+{#        alert("Details have not yet been set!!");#}
+{#    {% endif %}#}
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    {#$.get('{% url "organisers:gethackathons" %}', function(data) {#}
+    {#    let htmlText = '';#}
+    {#    for (let key in data) {#}
+    {#        htmlText += '<div style="padding:20px;"><p>';#}
+    {#        htmlText += '<span style="font-weight: bold;font-size: larger">Name: </span>' + data[key]['pk']+ '<br>';#}
+    {#        htmlText += '<span style="font-weight: bold;font-size: larger">Location: </span>' + data[key]['fields']['location']+ '<br>';#}
+    {#        htmlText += '<span style="font-weight: bold;font-size: larger">Date: </span>' + data[key]['fields']['date']+ '<br>';#}
+    {#        htmlText += '<span style="font-weight: bold;font-size: larger">Time: </span>' + data[key]['fields']['time'] + '<br>';#}
+    {#        htmlText += '<button style="align:right">'+ '<a href=# style="text-decoration:none;">View</a>'+'</button>';#}
+    {#        htmlText += '</p></div>';#}
+    {#     }#}
+        {#console.log(data);#}
+    {#    $('#list').append(htmlText);#}
+    {# });#}
+</script>

@@ -1,0 +1,13 @@
+<h1>ORGANISER RANKING FOR {{ hackathon }}</h1>
+<p><a href="{% url 'home' %}" style="text-decoration: none">HOME</a></p>
+<p><a href="{% url 'logout' %}" style="text-decoration: none">LOGOUT</a></p>
+
+{% for profile in profiles %}
+    <div style="text-align: center">
+        <h2 style="display: inline">{{ profile.participant.first_name }} {{ profile.participant.last_name }}</h2>
+        <h2 style="display: inline"><a href="/hackathons/{{ profile.participant.user.username }}/{{ profile.hackathon.name }}/accept" style="text-decoration: none">| Accept</a></h2>
+        <h2 style="display: inline"><a href="/hackathons/{{ profile.participant.user.username }}/{{ profile.hackathon.name }}/reject"  style="text-decoration: none">| Reject |</a></h2>
+        {{ profile.name }}
+    </div>
+{% endfor %}
+

@@ -1,0 +1,13 @@
+<h1>PARTICIPANT APPLICATION STATUS</h1>
+<p><a href="{% url 'home' %}" style="text-decoration: none">HOME</a></p>
+<p><a href="{% url 'logout' %}" style="text-decoration: none">LOGOUT</a></p>
+
+{% if profile.status_set %}
+    {% if profile.selected %}
+        <h2>Congratulations You Have Been Accepted to {{ profile.hackathon.name }}</h2>
+    {% else %}
+        <h2>You Have Been Rejected from {{ profile.hackathon.name }}. Better luck next time!</h2>
+    {% endif %}
+{% else %}
+    <h2>Your application is still under review</h2>
+{% endif %}
